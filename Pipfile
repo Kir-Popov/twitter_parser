@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 pyppeteer = "*"
 aiohttp = "*"
+aiostream = "*"
+pyppeteer-stealth = "*"
 
 [dev-packages]
 
