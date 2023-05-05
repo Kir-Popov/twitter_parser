@@ -3,12 +3,13 @@ from contextlib import asynccontextmanager
 import aiohttp
 
 from pyppeteer.browser import Browser as PyppeteerBrowser
+from pyppeteer_stealth import stealth
 
 TIMEOUT = 30000
 
-BROWSER_SIZE = (1280, 1024)
+BROWSER_SIZE = (1580, 1224)
 
-USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36"
+USER_AGENT = ""
 
 
 class Browser:
@@ -19,6 +20,8 @@ class Browser:
 
         if not args:
             args = list()
+
+        args.append("--incognito")
 
         if proxy:
             args.append(f"--proxy-server={proxy}")
@@ -48,6 +51,7 @@ class Browser:
             raise RuntimeError('browser not stated, use __aenter__ to create it.')
 
         page = await self.browser.newPage()
+        await stealth(page)
 
         if extra_headers:
             await page.setExtraHTTPHeaders(extra_headers)

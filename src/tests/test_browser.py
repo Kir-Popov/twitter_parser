@@ -1,6 +1,6 @@
 import asyncio
 
-from twitter_parser.browser_tools.browser import Browser
+from src.browser_tools.browser import Browser
 
 
 async def test_example():
